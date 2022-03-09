@@ -1,0 +1,97 @@
+@use '../utilities.scss' as u;
+
+@mixin buttons {
+    width: 100%;
+    height: 40px;
+    border-radius: 7px;
+    border: none;
+    transition: background-color 0.2s;
+    font-size: 1.05rem;
+    font-family: u.$mainFont;
+    font-weight: bold;
+    color: white;
+}
+
+@mixin log-in-fields {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    padding: 13px;
+
+    &:focus {
+        outline: solid 1px #FF3366;
+    }
+}
+
+.log-in-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(135deg, #DAD9FF 20%, #FFEBF1 50%, #DAD9FF 80%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;   
+        
+    &-form {
+        width: 300px;
+        height: auto;
+        background-color: #5D35FF;
+        box-shadow: 3px 3px 5px black;
+        border-radius: 10px;
+        padding: 25px;
+        }
+    }
+
+.log-in-logo {
+    width: 18rem;
+    display: block;
+    margin: 15px auto 60px auto;
+}
+
+.email {
+    @include log-in-fields;
+    @include u.box-sizing;
+    margin-bottom: 30px;
+}
+
+.password {
+    @include log-in-fields;
+    @include u.box-sizing;
+    margin-bottom: 30px;
+}
+
+.forgot-password {
+    margin: 0;
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.log-in-button {
+    @include buttons;
+    background-color: #FF5A9A;
+
+    &:hover {
+        background-color: #FF3366;
+    }
+}
+
+.sing-up-button {
+    @include buttons;
+    background-color: #AA8FFF;
+
+    &:hover {
+        background-color: #8256FF;
+    }
+}
+
+  @media (max-width: 400px) {
+    .log-in-container-form {
+        width: 80vw;
+    }
+
+    .log-in-logo {
+        width: 100%;
+    }
+  }

@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Days+One&family=Inter&display=swap');
+
+$titleFont: 'Days One', sans-serif;
+$mainFont: 'Inter', sans-serif;
+
+@mixin box-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+//reset anchor styling
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+}
+
+//horizontal line styling
+.horizontal-line {
+    overflow: hidden;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.horizontal-line:before,
+.horizontal-line:after {
+  background-color: rgb(209, 209, 209);
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.horizontal-line:before {
+    right: 0.5em;
+    margin-left: -50%;
+  }
+  
+  .horizontal-line:after {
+    left: 0.5em;
+    margin-right: -50%;
+  }
