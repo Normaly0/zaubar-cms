@@ -8,7 +8,7 @@ import Container from './container/container';
 import reducers from './reducers/reducers';
 import './index.scss';
 
-let store = createStore(reducers, applyMiddleware(thunk));
+export let store = createStore(reducers, applyMiddleware(thunk));
 
 function App() {
   return(

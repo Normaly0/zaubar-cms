@@ -1,21 +1,24 @@
 const defaultState = {
-    window: "login"
+    window: "login",
+    authenticated: false,
+    token: ''
 }
 
-const SIGNIN = "SIGNIN";
-const LOGIN = "LOGIN";
+const START = "START";
+const TOKEN = "TOKEN";
 
 function mainReducer (state = defaultState, action) {
     switch(action.type) {
-        case SIGNIN:
+        case START:
             return {
                 ...state,
-                window: "signin"
+                window: action.value
             }
-        case LOGIN:
+        case TOKEN:
             return {
                 ...state,
-                window: "login"
+                token: action.value,
+                authenticated: true
             }
         default:
             return {

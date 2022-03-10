@@ -1,7 +1,11 @@
 import React from 'react';
+import { useSelector, useDispatch} from 'react-redux';
 import './signin.scss';
 
 function SignIn() {
+
+    const dispatch = useDispatch();
+
     return (
         <div className = "sign-in-container">
             <form className = "log-in-container-form">
@@ -13,7 +17,7 @@ function SignIn() {
                     <input type = "text" className = "password-confirm" required = "required" placeholder = "Repeat Password" />
                     <button type = "submit" className = "log-in-button">Sign Up</button>
                     <p className = "horizontal-line">or</p>
-                    <button type = "button" className = "sing-up-button">Login</button>
+                    <button type = "button" className = "sing-up-button" onClick = {() => dispatch({type: "START", value: "login"})}>Login</button>
                 </form>
         </div>
     )
