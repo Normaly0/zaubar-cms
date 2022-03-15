@@ -1,11 +1,13 @@
 const defaultState = {
     window: "login",
     authenticated: false,
-    token: ''
+    token: '',
+    data: []
 }
 
 const START = "START";
-const TOKEN = "TOKEN";
+const AUTHENTICATION = "AUTHENTICATION";
+const DATA = "DATA"
 
 function mainReducer (state = defaultState, action) {
     switch(action.type) {
@@ -14,11 +16,15 @@ function mainReducer (state = defaultState, action) {
                 ...state,
                 window: action.value
             }
-        case TOKEN:
+        case AUTHENTICATION:
             return {
                 ...state,
-                token: action.value,
-                authenticated: true
+                authenticated: action.value
+            }
+        case DATA:
+            return {
+                ...state,
+                data: action.value
             }
         default:
             return {

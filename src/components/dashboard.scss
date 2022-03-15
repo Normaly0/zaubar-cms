@@ -1,0 +1,46 @@
+@use '../utilities.scss' as u;
+
+.dashboard {
+    width: 100vw;
+    height: 100vh;
+    color: black;
+    background-image: linear-gradient(135deg, #DAD9FF 20%, #FFEBF1 50%, #DAD9FF 80%);
+    font-family: u.$mainFont;
+}
+
+.title-container {
+    width: 280px;
+    text-align: center;
+    margin: 0 auto 50px auto;
+    font-family: u.$titleFont;
+    font-size: 1.5rem;
+    border-bottom: solid 3px rgb(139, 139, 139);
+
+    & h1 {
+        margin: 0;
+        padding-top: 30px;
+    }
+}
+
+.nav-bar {
+    width: 100%;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.logOut {
+    width: 100px;
+    height: 40px;
+    margin: 0 30px 0 auto;
+    border: none;
+    background-color: rgb(255, 130, 130);
+    border-radius: 10px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: rgb(255, 97, 97)
+    }
+}

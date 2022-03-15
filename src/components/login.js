@@ -11,20 +11,28 @@ function LogIn() {
         document.getElementById("log-in-form").addEventListener("submit", handleLogInSubmit);
     })
 
+    
     function handleLogInSubmit(e) {
-
+        
         e.preventDefault();
-
+        
         const formData = new FormData(e.currentTarget);
         const payload = JSON.stringify(Object.fromEntries(formData.entries()));
-
-    
-        fetch("http://localhost:8055/auth/login", {
-            method: "POST",
-            headers: {"Content-Type" : "application/json"},
-            body: payload
-        }).then(res => res.json())
-        .then(data => dispatch({type: "TOKEN", value: data.data.access_token}));
+        
+        (async () => {
+            try {
+                let response = await fetch("http://localhost:8055/auth/login", {
+                    method: "POST",
+                    headers: {"Content-Type" : "application/json"},
+                    body: payload
+                });
+                let json = await response.json();
+                localStorage.setItem("token", json.data.access_token);
+                dispatch({type: "AUTHENTICATION", value: true});
+            } catch(e) {
+                console.log(e);
+            }
+        })();
     }
 
     return (
