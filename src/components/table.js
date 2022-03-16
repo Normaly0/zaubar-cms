@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTable} from 'react-table';
+import {useTable, useExpanded} from 'react-table';
 import './table.scss';
 
 export default function Table({ columns, data}) {
@@ -9,8 +9,9 @@ export default function Table({ columns, data}) {
         getTableBodyProps,
         headerGroups,
         rows,
-        prepareRow
-    } = useTable({columns, data});
+        prepareRow,
+        state: { expanded }
+    } = useTable({columns, data}, useExpanded);
 
     return (
         <table {...getTableProps()} className = "table">

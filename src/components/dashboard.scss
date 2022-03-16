@@ -1,31 +1,27 @@
 @use '../utilities.scss' as u;
 
 .dashboard {
-    width: 100vw;
-    height: 100vh;
+    width: 75%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
     color: black;
-    background-image: linear-gradient(135deg, #DAD9FF 20%, #FFEBF1 50%, #DAD9FF 80%);
+    // background-color: purple; 
     font-family: u.$mainFont;
 }
 
-.title-container {
-    width: 280px;
-    text-align: center;
-    margin: 0 auto 50px auto;
-    font-family: u.$titleFont;
-    font-size: 1.5rem;
-    border-bottom: solid 3px rgb(139, 139, 139);
-
-    & h1 {
-        margin: 0;
-        padding-top: 30px;
-    }
+.nav-bar {
+    width: 90px;
+    height: 100%;
+    background-color: rgb(243, 243, 243);
+    border-radius: 20px;
 }
 
-.nav-bar {
-    width: 100%;
-    display: flex;
-    margin-bottom: 20px;
+.dahsboard-container {
+    flex-grow: 0.99;
+    height: 100%;
+    background-color: #C7C6FF;
+    border-radius: 20px;
 }
 
 .logOut {
