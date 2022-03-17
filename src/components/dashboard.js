@@ -1,9 +1,9 @@
-import { React, useEffect, useMemo } from 'react';
+import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './dashboard.scss';
-import Table from './table';
+import TourCard from './tourCard';
 
-const fields = "?fields=Tour_title,date_created,date_updated,Stations,Stations.Station_id.station_title,Stations.Station_id.date_created,Stations.Station_id.thumbnail,Stations.Station_id.Scenes,Stations.Station_id.Scenes.Scene_id.scene_title"
+const fields = "?fields=Tour_title,tour_thumbnail,date_created"
 
 function sortData(json) {
     let arr = [];
@@ -15,7 +15,7 @@ function sortData(json) {
             let stationArr = [];
             el[key].forEach((el, index) => {
                 stationArr.push({});
-                Object.keys(el.Station_id).forEach(key => (key === "Scenes") 
+                Object.keys(el.Station_id).forEach(key => (key === "Scenes")
                 ? stationArr[index][key] = (() => {
                     let sceneArr = [];
                     el.Station_id[key].forEach((el, index) => {
@@ -50,7 +50,6 @@ function Dashboard() {
                     headers: {authorization: "bearer " + access_token}
                 })
                 let json = await response.json();
-                console.log(json.data)
                 dispatch({type: "DATA", value: sortData(json.data)});
             } catch(e) {
                 console.log(e)
@@ -62,82 +61,71 @@ function Dashboard() {
         localStorage.clear()
         dispatch({type: "AUTHENTICATION", value: false})
     }
-
-    const columns = useMemo(
-        () => [
-            {
-                // Build our expander column
-                id: 'expander', // Make sure it has an ID
-                Header: ({ getToggleAllRowsExpandedProps, isAllRowsExpanded }) => (
-                  <span {...getToggleAllRowsExpandedProps()}>
-                    {/* {isAllRowsExpanded ? '🢃' : '🢂'} */}
-                  </span>
-                ),
-                Cell: ({ row }) =>
-                  // Use the row.canExpand and row.getToggleRowExpandedProps prop getter
-                  // to build the toggle for expanding a row
-                  row.canExpand ? (
-                    <span
-                      {...row.getToggleRowExpandedProps({
-                        style: {
-                          // We can even use the row.depth property
-                          // and paddingLeft to indicate the depth
-                          // of the row
-                          paddingLeft: `${row.depth * 2}rem`,
-                        },
-                      })}
-                    >
-                      {row.isExpanded ? '🢃' : '🢂'}
-                    </span>
-                  ) : null,
-              },
-            {
-                Header: "Tours",
-                columns: [
-                    {
-                        Header: "Tour Name",
-                        accessor: "Tour_title"
-                    },
-                    {
-                        Header: "Date Created",
-                        accessor: "date_created"
-                    },
-                    {
-                        Header: "Date Updated",
-                        accessor: "date_updated"
-                    },
-                    {
-                        Header: "Stations",
-                        accessor: "Stations.length"
-                    },
-                ]
-            }
-        ]
-        )
         
     return (
         <div className = "dashboard">
             <nav className = "nav-bar">
-
+                <div className = "nav-logo">
+                <img src="ZAUBAR-icon-small-black.png"></img>
+                </div>
+                <div className = "nav-bar-headers">
+                    <button type = "button" className = "nav-bar-button">
+                        <i className="fa-solid fa-gauge-high"></i>
+                    </button>
+                    <button type = "button" className = "nav-bar-button">
+                        <i className="fa-solid fa-suitcase"></i>                    
+                    </button>
+                    <button type = "button" className = "nav-bar-button">
+                        <i className="fa-solid fa-folder"></i>
+                    </button>
+                    <button type = "button" className = "nav-bar-button">
+                        <i className="fa-solid fa-circle-question"></i>
+                    </button>
+                </div>
+                <div className = "nav-bar-settings">
+                    <button type = "button" className = "nav-bar-button">
+                        <i className="fa-solid fa-gear"></i>                    
+                    </button>
+                </div>
             </nav>
-            <div className = "dahsboard-container">
-
+            <div className = "dashboard-container">
+                <div className = "dashboard-container-top">
+                    <h1>
+                        Welcome back ... !
+                    </h1>
+                    <div>
+                        <button type = "button" className = "top-row-button">
+                            <i className="fa-solid fa-bell"></i>
+                        </button>
+                        <button type = "button" className = "top-row-button">
+                            <img src=""></img>
+                        </button>
+                    </div>
+                </div>
+                <div className = "dashboard-container-stats">
+                    <h2>Stats</h2>
+                </div>
+                <div className = "dashboard-container-tours">
+                    <h2>Tours</h2>
+                    <div className = "tour-preview">
+                    {/* Render X Amount of Tour Cards */}
+                    {[...Array(data.length)].map(
+                        (value, index) => (
+                        <TourCard id={index + 1} key={index} title={data[index].Tour_title} date={data[index].date_created}/>
+                        )
+                    )}
+                    </div>
+                </div>
             </div>
-            {/* <Table columns={columns} data={data} /> */}
         </div>
     )
 }
 
 export default Dashboard;
 
-// json.data.forEach((el) => {
-//     el.date_created = el.date_created.slice(0, 10);
-//     if (el.date_updated !== null) {
-//         el.date_updated = el.date_updated.slice(0, 10);
-//     } else {
-//         return el.date_updated;
-//     }
-// });
+
 
 //To get all the data
 // http://localhost:8055/items/Tour?fields=*.*.*.*.*.*
+
+// const fields = "?fields=Tour_title,tour_thumbnail,date_created,date_updated,Stations,Stations.Station_id.station_title,Stations.Station_id.date_created,Stations.Station_id.thumbnail,Stations.Station_id.Scenes,Stations.Station_id.Scenes.Scene_id.scene_title"

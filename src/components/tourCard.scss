@@ -1,0 +1,39 @@
+@use '../utilities.scss' as u;
+
+.tour-card {
+    position: relative;
+    width: 22%;
+    height: 90%;
+    background-color: #DAD9FF;
+    border-radius: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include u.box-sizing;
+
+    & img {
+        width: 50%;
+    }
+
+    &-img {
+        width: 90%;
+        height: 90%;
+        border-radius: 25px;
+        overflow: hidden;
+        display: inherit;
+        align-items: inherit;
+        justify-content: inherit;
+    }
+
+    &-title {
+        font-size: 1.6rem;
+        position: absolute;
+        top: 40px;
+    }
+
+    &-date {
+        font-size: 1.4rem;
+        position: absolute;
+    }
+}
