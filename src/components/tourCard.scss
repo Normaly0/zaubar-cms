@@ -7,33 +7,34 @@
     background-color: #DAD9FF;
     border-radius: 25px;
     text-align: center;
+    font-weight: bold;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     @include u.box-sizing;
 
     & img {
-        width: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 25px;
     }
 
     &-img {
-        width: 90%;
-        height: 90%;
-        border-radius: 25px;
-        overflow: hidden;
-        display: inherit;
-        align-items: inherit;
-        justify-content: inherit;
+        width: 95%;
+        height: 95%;
     }
 
     &-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         position: absolute;
-        top: 40px;
+        top: 20%;
     }
 
     &-date {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         position: absolute;
+        top: 40%;
     }
 }

@@ -11,7 +11,6 @@ function LogIn() {
         document.getElementById("log-in-form").addEventListener("submit", handleLogInSubmit);
     })
 
-    
     function handleLogInSubmit(e) {
         
         e.preventDefault();
@@ -37,7 +36,7 @@ function LogIn() {
 
     return (
             <div className = "log-in-container">
-                <form action = "http://localhost:8055/auth/login" className = "log-in-container-form" id = "log-in-form">
+                <form className = "log-in-container-form" id = "log-in-form">
                     <img className = "log-in-logo" src = "ZAUBAR-logo.png" alt = "Zaubar Logo"></img>
                     <p>Please sign in to continue</p>
                         <input type = "email" name = "email" className = "email" required = "required" placeholder = "Email" />
@@ -45,7 +44,7 @@ function LogIn() {
                     <p className = "forgot-password">
                         <a href = "" target = "_blank" className = "reset-a">Forgot password?</a>
                     </p>
-                    <button type = "submit" className = "log-in-button" onClick = {fetch}>Login</button>
+                    <button type = "submit" className = "log-in-button">Login</button>
                     <p className = "horizontal-line">or</p>
                     <button type = "button" className = "sing-up-button" onClick = {() => dispatch({type: "START", value: "signup"})}>Sign Up</button>
                 </form>
