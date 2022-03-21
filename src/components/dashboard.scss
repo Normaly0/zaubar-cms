@@ -81,6 +81,7 @@
 
         & h1 {
             font-size: 1.7rem;
+            @include u.fadeIn;
         }
 
         &-buttons {
@@ -141,4 +142,8 @@
     width: 100%;
     height: 80%;
     column-gap: 4%;
+}
+
+@media (max-width: 1300px) {
+
 }

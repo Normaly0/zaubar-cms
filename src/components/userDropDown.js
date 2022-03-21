@@ -8,7 +8,7 @@ function UserDropDown(props) {
 
     function handleLogout() {
         localStorage.clear();
-        dispatch({type: "AUTHENTICATION", value: false}, {type: "DATA", value: []}, {type: "USER", value: []})
+        dispatch({type: "LOGOUT"})
     };
 
     return (

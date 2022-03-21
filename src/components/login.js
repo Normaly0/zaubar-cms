@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect} from 'react';
 import './login.scss';
 
@@ -28,6 +28,7 @@ function LogIn() {
                 let json = await response.json();
                 localStorage.setItem("token", json.data.access_token);
                 dispatch({type: "AUTHENTICATION", value: true});
+                dispatch({type: "LOADING", value: true});
             } catch(e) {
                 console.log(e);
             }

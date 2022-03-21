@@ -4,14 +4,17 @@ const defaultState = {
     token: '',
     data: [],
     user: [],
-    dropdown: false
+    dropdown: false,
+    loading: false
 }
 
 const START = "START";
 const AUTHENTICATION = "AUTHENTICATION";
-const DATA = "DATA"
-const USER = "USER"
-const DROPDOWN = "DROPDOWN"
+const LOGOUT = "LOGOUT";
+const DATA = "DATA";
+const USER = "USER";
+const DROPDOWN = "DROPDOWN";
+const LOADING = "LOADING";
 
 function mainReducer (state = defaultState, action) {
     switch(action.type) {
@@ -24,6 +27,18 @@ function mainReducer (state = defaultState, action) {
             return {
                 ...state,
                 authenticated: action.value
+            }
+        case LOGOUT:
+            return {
+                authenticated: false,
+                data: [],
+                user: [],
+                window: "login"
+            }
+        case LOADING:
+            return {
+                ...state,
+                loading: action.value
             }
         case DATA:
             return {

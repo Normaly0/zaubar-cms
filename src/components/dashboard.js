@@ -1,5 +1,7 @@
 import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Skeleton } from '@mui/material'
+import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
 
 import './dashboard.scss';
 import TourCard from './tourCard';
@@ -12,7 +14,7 @@ function sortData(json) {
 
     json.forEach((el, index) => {
         arr.push({});
-        Object.keys(el).forEach(key => (key === "Stations") 
+        Object.keys(el).forEach(key => (key === "Stations")
         ? arr[index][key] = (() => {
             let stationArr = [];
             el[key].forEach((el, index) => {
@@ -38,10 +40,13 @@ function sortData(json) {
 function Dashboard() {
 
     const dispatch = useDispatch();
-    const {data, user, dropdown} = useSelector((store) => store);
+    const {data, user, dropdown, loading} = useSelector((store) => store);
     const access_token = localStorage.getItem("token");
+    const { promiseInProgress } = usePromiseTracker();
 
     useEffect(() => {
+        
+        trackPromise(
         (async () => {
             try {
                 let response = await fetch("http://localhost:8055/items/Tour" + fields , {
@@ -49,12 +54,19 @@ function Dashboard() {
                     headers: {authorization: "bearer " + access_token}
                 })
                 let json = await response.json();
-                dispatch({type: "DATA", value: sortData(json.data)});
+                if (promiseInProgress === false) {
+                    setTimeout(() => {
+                        dispatch({type: "DATA", value: sortData(json.data)});
+                        dispatch({type: "LOADING", value: false})
+                    }, 1000)
+                }
             } catch(e) {
                 console.log(e)
             }
-        })();
+        })()
+        );
 
+        trackPromise(
         (async () => {
             try {
                 let response = await fetch("http://localhost:8055/users/me", {
@@ -62,11 +74,17 @@ function Dashboard() {
                     headers: {authorization: "bearer " + access_token}
                 })
                 let json = await response.json()
-                dispatch({type: "USER", value: json.data})
+                if (promiseInProgress === false) {
+                    setTimeout(() => {
+                        dispatch({type: "USER", value: json.data})
+                        dispatch({type: "LOADING", value: false})
+                    }, 1000)
+                }
             }   catch(e) {
                 console.log(e)
             }
-        })();
+        })()
+        );
     }, []);
     
     function expandDropdown() {
@@ -112,15 +130,19 @@ function Dashboard() {
 
             <div className = "dashboard-container">
                 <div className = "dashboard-container-top">
-                    <h1>
-                        Welcome back {user.first_name}!
-                    </h1>
+                    {loading
+                    ? <Skeleton variant = "text" animation = "wave" width = {300} height = {70}/>
+                    : <h1>Welcome back {user.first_name}!</h1>
+                    }
                     <div className = "dashboard-container-top-buttons">
                         <button type = "button" className = "top-row-button">
                             <i className="fa-solid fa-bell"></i>
                         </button>
                         <button type = "button" className = "top-row-button" onClick = {expandDropdown}>
-                            <img src={"http://localhost:8055/assets/" + user.avatar + "?access_token=" + access_token}></img>
+                            {loading
+                            ? <Skeleton variant="circular" width={38} height={38} />
+                            :<img src={"http://localhost:8055/assets/" + user.avatar + "?access_token=" + access_token}></img>
+                            }
                         </button>
                         {dropdown === true
                         ? <UserDropDown first_name = {user.first_name} last_name = {user.last_name} />
@@ -136,21 +158,37 @@ function Dashboard() {
                 <div className = "dashboard-container-tours">
                     <h2>Tours</h2>
                     <div className = "tour-preview">
-                    {/* Render max 4 Tour Cards */}
-                    {[...Array(data.length)].map(
-                        (value, index) => {
-                             if (index < 4) {
+                    {loading
+                        ? [...Array(4)].map(
+                            (value, index) => {
                                 return (
-                                    <TourCard 
-                                    id={index + 1} 
-                                    key={index} 
-                                    title={data[index].Tour_title} 
-                                    date={data[index].date_created} 
-                                    img={data[index].tour_thumbnail}/>
-                                );
-                            };
-                        }
-                    )}
+                                    <Skeleton 
+                                    id = {index + 1}
+                                    key = {index}
+                                    style = {{
+                                        transform: "none",
+                                        height: "90%",
+                                        borderRadius: "25px"
+                                    }}
+                                    className = "tour-card" />
+                                )
+                            }
+                        )
+                        : [...Array(data.length)].map(
+                            (value, index) => {
+                                 if (index < 4) {
+                                    return (
+                                        <TourCard 
+                                        id={index + 1} 
+                                        key={index}
+                                        title={data[index].Tour_title} 
+                                        date={data[index].date_created} 
+                                        img={data[index].tour_thumbnail}/>
+                                    );
+                                };
+                            } 
+                        )
+                    }
                     </div>
                 </div>
             </div>
