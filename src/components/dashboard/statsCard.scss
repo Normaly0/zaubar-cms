@@ -1,0 +1,23 @@
+@use 'src/utilities.scss' as u;
+
+.stats-card {
+    position: relative;
+    width: 22%;
+    height: 100%;
+    background-color: #DAD9FF;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    @include u.box-sizing;
+    @include u.fadeIn;
+
+    &-title {
+        text-align: center;
+    }
+
+    &-data {
+        margin-left: 10px;
+    }
+
+
+}

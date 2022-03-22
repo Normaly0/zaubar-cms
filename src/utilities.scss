@@ -59,3 +59,11 @@ $mainFont: 'Inter', sans-serif;
   -o-animation: fadein 2s; /* Opera < 12.1 */
   animation: fadein 2s;
 }
+
+.darken {
+  filter: brightness(70%);
+}
+
+.lighten {
+  filter: brightness(90%);
+}

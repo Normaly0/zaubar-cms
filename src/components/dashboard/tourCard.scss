@@ -1,25 +1,30 @@
-@use '../utilities.scss' as u;
+@use 'src/utilities.scss' as u;
 
 .tour-card {
     position: relative;
     width: 22%;
     height: 90%;
     background-color: #DAD9FF;
-    border-radius: 25px;
-    text-align: center;
-    font-weight: bold;
+    border-radius: 5px;
+    font-family: u.$titleFont;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     @include u.box-sizing;
     @include u.fadeIn;
+    cursor: pointer;
+    transition: filter 0.2s ease;
+
+    &:hover {
+        filter: brightness(120%);
+    }
 
     & img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 25px;
+        border-radius: 5px;
     }
 
     &-img {
@@ -29,6 +34,7 @@
 
     &-title {
         font-size: 1.8rem;
+        padding: 0.2rem;
         position: absolute;
         top: 20%;
     }

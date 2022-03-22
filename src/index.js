@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import Container from './container/container';
@@ -11,6 +11,7 @@ import './index.scss';
 export let store = createStore(reducers, applyMiddleware(thunk));
 
 function App() {
+
   return(
     <div>
       <Container />

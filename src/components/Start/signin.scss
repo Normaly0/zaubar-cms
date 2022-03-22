@@ -1,9 +1,9 @@
-@use '../utilities.scss' as u;
+@use 'src/utilities.scss' as u;
 
 @mixin buttons {
     width: 100%;
     height: 40px;
-    border-radius: 7px;
+    border-radius: 5px;
     border: none;
     transition: background-color 0.2s;
     font-size: 1.05rem;
@@ -12,54 +12,57 @@
     color: white;
 }
 
-@mixin log-in-fields {
+@mixin sign-in-fields {
     width: 100%;
     height: 40px;
     outline: none;
     border: none;
-    border-radius: 7px;
+    border-radius: 5px;
     padding: 13px;
+    margin-bottom: 30px;
 
     &:focus {
         outline: solid 1px #FF3366;
     }
 }
 
-.log-in-container {
+.sign-in-container {
     width: 100vw;
     height: 100vh;
-    background-color: #DAD9FF;
+    background-color: #DAD9FF; 
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;   
+    flex-wrap: wrap;
         
     &-form {
         width: 300px;
-        height: auto;
+        height: 500px;
         background-color: #5D35FF;
-        box-shadow: 3px 3px 5px rgb(0, 0, 0);
-        // border-radius: 10px;
+        // box-shadow: 3px 3px 5px black;
+        border-radius: 5px;
         padding: 25px;
-        }
     }
+}
 
-.log-in-logo {
-    width: 18rem;
-    display: block;
-    margin: 15px auto 60px auto;
+.user-name {
+    @include sign-in-fields;
+    @include u.box-sizing;
 }
 
 .email {
-    @include log-in-fields;
+    @include sign-in-fields;
     @include u.box-sizing;
-    margin-bottom: 30px;
 }
 
 .password {
-    @include log-in-fields;
+    @include sign-in-fields;
     @include u.box-sizing;
-    margin-bottom: 30px;
+}
+
+.password-confirm {
+    @include sign-in-fields;
+    @include u.box-sizing;
 }
 
 .forgot-password {
@@ -68,26 +71,8 @@
     text-align: right;
 }
 
-.log-in-button {
-    @include buttons;
-    background-color: #FF5A9A;
-
-    &:hover {
-        background-color: #FF3366;
-    }
-}
-
-.sing-up-button {
-    @include buttons;
-    background-color: #AA8FFF;
-
-    &:hover {
-        background-color: #8256FF;
-    }
-}
-
-  @media (max-width: 400px) {
-    .log-in-container-form {
+@media (max-width: 400px) {
+    .sign-in-container-form {
         width: 80vw;
     }
 

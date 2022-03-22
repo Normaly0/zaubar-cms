@@ -27,6 +27,7 @@ function LogIn() {
                 });
                 let json = await response.json();
                 localStorage.setItem("token", json.data.access_token);
+                localStorage.setItem("refresh", json.data.refresh_token);
                 dispatch({type: "AUTHENTICATION", value: true});
                 dispatch({type: "LOADING", value: true});
             } catch(e) {
@@ -39,7 +40,7 @@ function LogIn() {
             <div className = "log-in-container">
                 <form className = "log-in-container-form" id = "log-in-form">
                     <img className = "log-in-logo" src = "ZAUBAR-logo.png" alt = "Zaubar Logo"></img>
-                    <p>Please sign in to continue</p>
+                    <p>Please log in to continue</p>
                         <input type = "email" name = "email" className = "email" required = "required" placeholder = "Email" />
                     <input type = "password" name = "password" className = "password" required = "required" placeholder = "Password" />
                     <p className = "forgot-password">

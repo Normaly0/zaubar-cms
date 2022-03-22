@@ -1,10 +1,11 @@
 .user-dropdown {
     position: absolute;
+    z-index: 1;
     text-align: center;
     top: 120%;
     width: 200px;
     height: 300px;
-    border-radius: 20px;
+    border-radius: 5px;
     background-color: #acaaff;
     font-size: 1.2rem;
     font-weight: bold;
