@@ -1,0 +1,38 @@
+@use 'src/utilities.scss' as u;
+
+.dashboard-container-body-files {
+    width: 100%;
+    height: 88%;
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    @include u.box-sizing;
+    @include u.fadeIn;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    &-preview {
+        margin: 3% 0 2% 4%;
+        width: 200px;
+        height: 200px;
+        background-color: #DAD9FF;
+        border-radius: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-img {
+            width: 95%;
+            height: 95%;
+
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+@use 'src/utilities.scss' as u;
+
+.dashboard-container-body-overview {
+    width: 100%;
+    height: 88%;
+    border-radius: 5px;
+    @include u.box-sizing;
+
+    &-stats {
+        width: 100%;
+        height: 40%;
+        padding: 15px 20px;
+        @include u.box-sizing;
+        display: flex;
+        flex-wrap: wrap;
+
+        & h2 {
+            font-size: 1.8rem;
+            margin: 0 0 0 20px;
+            height: 30%;
+            width: 100%;
+        }
+    }
+
+    &-tours {
+        width: 100%;
+        height: 60%;
+        padding: 15px 20px;
+        @include u.box-sizing;
+        display: flex;
+        flex-wrap: wrap;
+
+        & h2 {
+            font-size: 1.8rem;
+            margin: 0 0 0 20px;
+            bottom: 0;
+            width: 100%;
+            height: 20%;
+            @include u.fadeIn;
+        }
+    }
+}
+
+.tour-preview {
+    display: inherit;
+    width: 100%;
+    height: 80%;
+    column-gap: 4%;
+}
+
+.stats-preview {
+    display: inherit;
+    width: 100%;
+    height: 70%;
+    column-gap: 4%;
+}

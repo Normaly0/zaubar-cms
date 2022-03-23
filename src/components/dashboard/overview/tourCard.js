@@ -7,8 +7,6 @@ function dateFormating(date) {
     return arr.reverse().join("-")
 }
 
-
-
 function TourCard(props) {
 
     const access_token = localStorage.getItem("token");
@@ -16,7 +14,7 @@ function TourCard(props) {
         return (
             <div className = "tour-card">
                 <div className = "tour-card-img darken">
-                    <img alt = "foo" className = "" src = {"http://localhost:8055/assets/" + props.img + "?access_token=" + access_token}></img>
+                    <img alt = "" className = "" src = {"http://localhost:8055/assets/" + props.img + "?access_token=" + access_token}></img>
                 </div>
                     <p className = "tour-card-title">{props.title}</p>
                     <p className = "tour-card-date">{dateFormating(props.date)}</p>

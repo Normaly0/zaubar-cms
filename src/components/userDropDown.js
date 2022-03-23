@@ -7,8 +7,24 @@ function UserDropDown(props) {
     const dispatch = useDispatch();
 
     function handleLogout() {
-        localStorage.clear();
         dispatch({type: "LOGOUT"})
+        
+        const refresh_token = localStorage.getItem("refresh");
+        const payload = JSON.stringify({"refresh_token": refresh_token});
+
+        (async() => {
+            try {
+                    fetch("http://localhost:8055/auth/logout", {
+                    method: "POST",
+                    headers: {"Content-Type" : "application/json"},
+                    body: payload
+                });
+            } catch(e) {
+                console.log(e)
+            }
+            })();
+        
+        localStorage.clear();
     };
 
     return (

@@ -11,11 +11,8 @@ import './index.scss';
 export let store = createStore(reducers, applyMiddleware(thunk));
 
 function App() {
-
-  return(
-    <div>
-      <Container />
-    </div>
+  return (
+    <Container />  
   )
 }
 

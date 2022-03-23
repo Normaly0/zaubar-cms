@@ -1,8 +1,9 @@
 const defaultState = {
     window: "login",
     authenticated: false,
-    token: '',
+    dashboard: 'overview',
     data: [],
+    files: [],
     user: [],
     dropdown: false,
     loading: false
@@ -11,7 +12,9 @@ const defaultState = {
 const START = "START";
 const AUTHENTICATION = "AUTHENTICATION";
 const LOGOUT = "LOGOUT";
+const DASHBOARD = "DASHBOARD";
 const DATA = "DATA";
+const FILES = "FILES"
 const USER = "USER";
 const DROPDOWN = "DROPDOWN";
 const LOADING = "LOADING";
@@ -35,6 +38,11 @@ function mainReducer (state = defaultState, action) {
                 user: [],
                 window: "login"
             }
+        case DASHBOARD:
+            return {
+                ...state,
+                dashboard: action.value
+            }
         case LOADING:
             return {
                 ...state,
@@ -44,6 +52,11 @@ function mainReducer (state = defaultState, action) {
             return {
                 ...state,
                 data: action.value
+            }
+        case FILES: 
+            return {
+                ...state,
+                files: action.value
             }
         case USER: {
             return {
