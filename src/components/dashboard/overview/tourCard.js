@@ -20,7 +20,6 @@ function TourCard(props) {
                     <p className = "tour-card-date">{dateFormating(props.date)}</p>
             </div>
         )
-    
 }
 
 export default TourCard;

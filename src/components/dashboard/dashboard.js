@@ -133,7 +133,7 @@ function Dashboard() {
                 <div className = "dashboard-container-top">
                     {loading
                     ? <Skeleton variant = "text" animation = "wave" width = {300} height = {70}/>
-                    : <h1>Welcome back {user.first_name}!</h1>
+                    : <h1>Welcome back {user.first_name}</h1>
                     }
                     <div className = "dashboard-container-top-buttons">
                         <button type = "button" className = "top-row-button">

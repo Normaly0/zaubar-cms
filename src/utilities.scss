@@ -10,6 +10,41 @@ $mainFont: 'Inter', sans-serif;
 }
 
 //reset anchor styling
+@mixin reset-a {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+
+    &:hover {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+    }
+
+    &:visited {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+    }
+
+    &:focus {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+    }
+
+    :active {
+    text-decoration: none;
+    color: inherit;
+    outline: 0;
+    cursor: pointer;
+    }
+}
+
 .reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
     text-decoration: none;
     color: inherit;

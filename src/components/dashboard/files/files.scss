@@ -20,8 +20,28 @@
         border-radius: 5px;
 
         display: flex;
+        position: relative;
         align-items: center;
         justify-content: center;
+
+        &-button {
+            opacity: 0;
+            transition: 0.1s ease;
+            position: absolute;
+            outline: none;
+            border: none;
+            background-color: #C7C6FF;
+            color: white;
+            cursor: pointer;
+            height: 60px;
+            width: 60px;
+            border-radius: 30px;
+            font-size: 1.6rem;
+        }
+
+        & a {
+            @include u.reset-a;
+        }
 
         &-img {
             width: 95%;
@@ -35,4 +55,14 @@
             }
         }
     }
+}
+
+.button-download {
+    top: 30%;
+    left: 19%;
+}
+
+.button-delete {
+    top: 30%;
+    left: 51%;
 }
