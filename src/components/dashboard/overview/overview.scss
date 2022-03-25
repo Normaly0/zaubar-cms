@@ -54,3 +54,9 @@
     height: 70%;
     column-gap: 4%;
 }
+
+@media (max-width: 750px) {
+    .dashboard-container-body-overview {
+        height: 92%;
+    }
+}

@@ -25,13 +25,12 @@ function Container() {
                     let json = await response.json();
                     if (response.status === 200) { 
                         dispatch({type: "AUTHENTICATION", value: true}); 
-                        dispatch({type: "LOADING", value: true});
+                        // dispatch({type: "LOADING", value: true});
                         localStorage.setItem("token", json.data.access_token);
                         localStorage.setItem("refresh", json.data.refresh_token);
                         //refresh token before TTL is reached
                         setTimeout(() => {
                             checkToken()
-                            dispatch({type: "LOADING", value: false})
                         }, (json.data.expires - 5000));
                     } else {
                         dispatch({type: "AUTHENTICATION", value: false}); 

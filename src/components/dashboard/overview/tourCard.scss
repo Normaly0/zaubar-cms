@@ -32,16 +32,11 @@
         height: 95%;
     }
 
-    &-title {
-        font-size: 1.8rem;
+    &-text {
+        font-size: 1.8vw;
+        text-align: center;
         padding: 0.2rem;
         position: absolute;
         top: 20%;
-    }
-
-    &-date {
-        font-size: 1.6rem;
-        position: absolute;
-        top: 40%;
     }
 }

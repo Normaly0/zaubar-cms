@@ -46,6 +46,8 @@ function Dashboard() {
     const { promiseInProgress } = usePromiseTracker();
 
     useEffect(() => {
+
+        dispatch({type: "LOADING", value: true});
         
         trackPromise(
         (async () => {

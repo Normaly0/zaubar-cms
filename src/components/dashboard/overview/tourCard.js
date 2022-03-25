@@ -16,8 +16,7 @@ function TourCard(props) {
                 <div className = "tour-card-img darken">
                     <img alt = "" className = "" src = {"http://localhost:8055/assets/" + props.img + "?access_token=" + access_token}></img>
                 </div>
-                    <p className = "tour-card-title">{props.title}</p>
-                    <p className = "tour-card-date">{dateFormating(props.date)}</p>
+                    <p className = "tour-card-text">{props.title}<br></br>{dateFormating(props.date)}</p>
             </div>
         )
 }

@@ -4,8 +4,11 @@
     width: 100%;
     height: 88%;
     border-radius: 5px;
+
     overflow-x: hidden;
     overflow-y: scroll;
+    
+
     @include u.box-sizing;
     @include u.fadeIn;
     display: flex;
@@ -55,6 +58,24 @@
             }
         }
     }
+}
+
+.dashboard-container-body-files::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.dashboard-container-body-files::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: transparent;
+}
+
+.dashboard-container-body-files::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  background-color: rgb(175, 164, 255);
 }
 
 .button-download {

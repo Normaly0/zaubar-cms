@@ -8,23 +8,27 @@ function Files(props) {
 
     const {files} = useSelector(store => store);
     const { promiseInProgress } = usePromiseTracker();
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        trackPromise(
-        (async() => {
-            try {
-                let response = await fetch("http://localhost:8055/files" , {
-                method: "GET",
-                headers: {authorization: "bearer " + props.access_token}
-            });
-                let json = await response.json();
-                dispatch({type: "FILES", value: json.data});
-            } catch(e) {
-                console.log(e);
-            }
-        })());
+        loadFiles();
     },[]);
+
+    function loadFiles() {
+        trackPromise(
+            (async() => {
+                try {
+                    let response = await fetch("http://localhost:8055/files" , {
+                    method: "GET",
+                    headers: {authorization: "bearer " + props.access_token}
+                });
+                    let json = await response.json();
+                    dispatch({type: "FILES", value: json.data});
+                } catch(e) {
+                    console.log(e);
+                }
+            })());
+    };
 
     function handleMouseEnter(e) {
         let arr = e.currentTarget.querySelectorAll("button");
@@ -40,6 +44,26 @@ function Files(props) {
         }
     }
 
+    function handleFileUpload(e) {
+        const file = e.target.files
+        const formData = new FormData();
+        formData.append("File", file[0]);
+
+        (async() => {
+            try {
+                    await fetch("http://localhost:8055/files", {
+                    method: "POST",
+                    headers: {
+                        authorization: "bearer " + props.access_token,
+                    },
+                    body: formData});
+                    loadFiles();
+            } catch(e) {
+                console.log(e)
+            }
+        })();
+    }
+
     function handleDelete(e) {
         (async() => {
             try {
@@ -48,7 +72,7 @@ function Files(props) {
                     method: "DELETE",
                     headers: {authorization: "bearer " + props.access_token}});
                     if (response.status === 204) {
-                        document.getElementById(id).remove();
+                        loadFiles();
                     }
             } catch(e) {
                 console.log(e)
@@ -58,7 +82,11 @@ function Files(props) {
 
     return (
         <div className = "dashboard-container-body-files">
-            {(promiseInProgress)
+            <label htmlFor = "file-upload" className = "dashboard-container-body-files-preview" style = {{cursor: "pointer"}} >
+                <input type = "file" id = "file-upload" style = {{display: "none"}} onChange = {handleFileUpload}></input>
+                <i className="fa-solid fa-plus" style = {{color: "white", fontSize: "4rem"}}></i>
+            </label>
+            {promiseInProgress
             ? [...Array(15)].map(
                 (value, index) => {
                     return (

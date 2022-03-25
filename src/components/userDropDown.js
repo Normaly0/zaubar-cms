@@ -23,7 +23,6 @@ function UserDropDown(props) {
                 console.log(e)
             }
             })();
-        
         localStorage.clear();
     };
 

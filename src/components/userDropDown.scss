@@ -1,3 +1,5 @@
+@use 'src/utilities.scss' as u; 
+
 .user-dropdown {
     position: absolute;
     z-index: 1;
@@ -9,6 +11,9 @@
     background-color: #acaaff;
     font-size: 1.2rem;
     font-weight: bold;
+
+    @include u.fadeIn;
+    animation-duration: 0.2s;
 
     display: flex;
     flex-direction: column;

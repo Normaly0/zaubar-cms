@@ -36,6 +36,7 @@ function mainReducer (state = defaultState, action) {
                 authenticated: false,
                 data: [],
                 user: [],
+                files: [],
                 window: "login"
             }
         case DASHBOARD:
